@@ -46,6 +46,7 @@ BANNER = r"""
   v{ver}  |  Author : JackTekno
   Advanced Blind SQLi Research Framework
   GitHub  : https://github.com/JackTekno/DeepInject
+  Source Code Repository  : https://github.com/JackTekno/DeepInject
 
   Techniques : Time-based | Boolean-based | Error-based
   Evasion    : WAF bypass | Obfuscation | Adaptive timing
