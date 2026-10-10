@@ -6,6 +6,10 @@ DBMS       : MySQL, MSSQL, PostgreSQL, Oracle, SQLite (native payloads each)
 Features   : WAF bypass, multipart/form/json/get/cookie/header injection,
              adaptive timing, threading, full DB enumeration, obfuscation,
              checkpoint/resume, dump-all pipeline, rate limiting, live stats
+
+Author     : Zaky Nour Rizqy (GitHub: JackTekno)
+Repository : https://github.com/JackTekno/DeepInject
+License    : MIT
 """
 
 import requests
@@ -33,9 +37,16 @@ except Exception:
     pass
 
 __version__ = "2.1"
-__author__  = "JackTekno"
-__github__  = "https://github.com/JackTekno"
+__author__  = "Zaky Nour Rizqy"
+__github__  = "JackTekno"
+__github_url__ = "https://github.com/JackTekno"
+__repo__    = "https://github.com/JackTekno/DeepInject"
 __license__ = "MIT"
+
+# Backwards-compatible aliases
+AUTHOR = __author__
+GITHUB_USER = __github__
+REPOSITORY = __repo__
 
 
 def _setup_console():
@@ -65,14 +76,15 @@ BANNER = r"""
                   | |             _/ |
                   |_|            |__/
 
-  v{ver}  |  Author : JackTekno
+  v{ver}  |  Author : {author}
   Advanced Blind SQLi Research Framework
-  GitHub  : https://github.com/JackTekno/DeepInject
-  Source Code Repository  : https://github.com/JackTekno/DeepInject
+  GitHub   : {gh}  ({reponame})
+  Repo     : {repo}
 
   Techniques : Time-based | Boolean-based | Auto-select
   Evasion    : WAF bypass | Obfuscation | Adaptive timing | Rate limit
-""".format(ver=VERSION)
+""".format(ver=VERSION, author=__author__, gh=__github_url__,
+           reponame=__repo__.rsplit("/", 1)[-1], repo=__repo__)
 
 
 # ─────────────────────────────────────────────────────────────
@@ -2206,6 +2218,9 @@ def main(argv: Optional[List[str]] = None):
     reporter.set_meta({
         "tool": "DeepInject",
         "version": __version__,
+        "author": __author__,
+        "github": __github_url__,
+        "repository": __repo__,
         "url": cfg.url,
         "inject_param": cfg.inject_param,
         "inject_type": cfg.inject_type,
@@ -2272,7 +2287,9 @@ def write_dump_dir(path: str, result: Dict[str, Any], cfg: Config) -> List[str]:
                              "rows": len(data.get("rows", []))})
     manifest_path = os.path.join(path, "manifest.json")
     with open(manifest_path, "w", encoding="utf-8") as f:
-        json.dump({"target": cfg.url, "dbms": cfg.dbms, "tables": manifest},
+        json.dump({"tool": "DeepInject", "version": __version__,
+                   "author": __author__, "repository": __repo__,
+                   "target": cfg.url, "dbms": cfg.dbms, "tables": manifest},
                   f, indent=2, default=str)
     print(f"\n[+] {len(written)} file tabel + manifest ditulis → {path}")
     return written
