@@ -12,7 +12,7 @@ Advanced Blind SQL Injection Research Framework
                   | |             _/ |
                   |_|            |__/
 
-  v2.1  |  Author : JackTekno
+  v2.1  |  Author : Zaky Nour Rizqy (JackTekno)
 ```
 
 > **For authorized penetration testing and security research only.**
@@ -93,6 +93,8 @@ pip install requests
 Or: `pip install -r requirements.txt`
 
 Python 3.7+ required.
+
+**Repository:** <https://github.com/JackTekno/DeepInject> · **Author:** Zaky Nour Rizqy (GitHub: [@JackTekno](https://github.com/JackTekno))
 
 ---
 
@@ -356,8 +358,10 @@ Every report ends with a run metadata block:
 
 ```json
 "_meta": {
-  "tool": "DeepInject", "version": "2.1", "url": "...",
-  "dbms": "mysql", "technique": "time", "payload_style": 0,
+  "tool": "DeepInject", "version": "2.1",
+  "author": "Zaky Nour Rizqy", "github": "https://github.com/JackTekno",
+  "repository": "https://github.com/JackTekno/DeepInject",
+  "url": "...", "dbms": "mysql", "technique": "time", "payload_style": 0,
   "requests": 417, "elapsed_seconds": 231.6, "checkpoint_steps": 1284
 }
 ```
@@ -442,8 +446,10 @@ Unauthorized use against systems you do not own or have explicit written permiss
 
 ## Author
 
-**JackTekno**
-GitHub: [https://github.com/JackTekno](https://github.com/JackTekno)
+**Zaky Nour Rizqy**
+
+- GitHub: [JackTekno](https://github.com/JackTekno)
+- Repository: [JackTekno/DeepInject](https://github.com/JackTekno/DeepInject)
 
 ---
 

@@ -91,6 +91,26 @@ class ServerMixin:
         cls.server.server_close()
 
 
+class TestAuthorshipMetadata(unittest.TestCase):
+    """The author / repo attribution is user-visible output, so pin it down."""
+
+    def test_module_metadata(self):
+        self.assertEqual(di.__author__, "Zaky Nour Rizqy")
+        self.assertEqual(di.__github__, "JackTekno")
+        self.assertEqual(di.__github_url__, "https://github.com/JackTekno")
+        self.assertEqual(di.__repo__, "https://github.com/JackTekno/DeepInject")
+        self.assertEqual(di.AUTHOR, di.__author__)
+        self.assertEqual(di.GITHUB_USER, di.__github__)
+        self.assertEqual(di.REPOSITORY, di.__repo__)
+
+    def test_banner_shows_author_and_repo(self):
+        self.assertIn("Zaky Nour Rizqy", di.BANNER)
+        self.assertIn("https://github.com/JackTekno/DeepInject", di.BANNER)
+
+    def test_repo_url_contains_github_user(self):
+        self.assertIn(di.__github__, di.__repo__)
+
+
 class TestHelpers(unittest.TestCase):
 
     def test_fmt_duration(self):
@@ -472,6 +492,9 @@ class TestCliEndToEnd(ServerMixin, unittest.TestCase):
                 data = json.load(f)
             self.assertEqual(data["databases"], mock_server.DATABASES)
             self.assertEqual(data["_meta"]["technique"], "time")
+            self.assertEqual(data["_meta"]["author"], "Zaky Nour Rizqy")
+            self.assertEqual(data["_meta"]["repository"],
+                             "https://github.com/JackTekno/DeepInject")
             self.assertIn("stats", data)
 
     def test_dump_all_pipeline(self):
