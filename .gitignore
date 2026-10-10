@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+# DeepInject run artifacts
+*.state.json
+state.json
+outdir*/
+out/
+# Local reports
+*.jsonl
